@@ -1,0 +1,56 @@
+// Example program
+#include <iostream>
+#include <string>
+
+void print (int[],int);
+void quickSort (int[], int, int);
+
+int main()
+{
+    int array[20] = {77,63,30,2,13,92,56,14,19,8,71,28,32,41,80,22,54,87,6,17};
+    
+    print (array,20);
+    quickSort (array, 0, 19);
+    print (array,20);
+}
+
+void print (int array[], int size)
+{
+    for (int i = 0; i < size; i++)
+	{
+		std::cout << array[i] << "|";
+	}
+	std::cout << '\n';
+}
+
+void quickSort (int array[], int left, int right)
+{
+    int i = left, j = right;
+    int tmp;
+    int pivot = array[(left+right)/2];
+    
+    /*partition*/
+    while (i <= j)
+    {
+        while (array[i] < pivot)
+            i++;
+        while (array[j] > pivot)
+            j--;
+        if (i <= j)
+        {
+            tmp = array[i];
+            array[i] = array[j];
+            array[j] = tmp;
+            i++;
+            j--;
+        }
+    };
+    
+    /*recurtion*/
+    if (left < j)
+        quickSort (array, left, j);
+    if (i < right)
+        quickSort (array, i, right);
+}
+            
+        
